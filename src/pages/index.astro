@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const featuredProjects = projects.filter((p) => p.data.featured);
+
+const writing = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Zhiqi Kang">
+  <!-- Hero Section -->
+  <section class="mb-14 sm:mb-20">
+    <div class="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-6 mb-6">
+      <div class="flex-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Building software & web tools</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-4">
+          Hi, I’m Zhiqi Kang.
+        </h1>
+
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+          I build clean web applications, developer tools, and lightweight software. Interested in minimal systems, interactive UI, data pipelines, and high-craft digital tools.
+        </p>
+      </div>
+
+      <!-- Avatar -->
+      <div class="relative group">
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-700 shadow-md">
+          <img
+            src="/images/Zhiqi_Kang_FullSize.jpg"
+            alt="Zhiqi Kang"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick action links -->
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <a
+        href="#featured-projects"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white dark:bg-white dark:text-gray-900 font-medium text-sm hover:opacity-90 transition-opacity shadow-sm"
+      >
+        <span>Explore Projects</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+      <a
+        href="/cv"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 font-medium text-sm hover:bg-gray-100 dark:hover:bg-slate-800/80 transition-colors"
+      >
+        <span>About & Experience</span>
+        <span>→</span>
+      </a>
+      <a
+        href="https://github.com/zhiqikang"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 font-medium text-sm hover:bg-gray-100 dark:hover:bg-slate-800/80 transition-colors"
+      >
+        <span>GitHub</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="featured-projects" class="mb-16 scroll-mt-24">
+    <div class="flex items-center justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          Featured Projects
+        </h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+          Interactive tools and software experiments.
+        </p>
+      </div>
+      <a
+        href="/projects"
+        class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+      >
+        <span>View all</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.tags}
+            demoUrl={project.data.demoUrl}
+            githubUrl={project.data.githubUrl}
+            slug={project.id}
+            featured={project.data.featured}
+            badge={project.data.badge}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Recent Writing / Notes Section -->
+  <section class="mb-14">
+    <div class="flex items-center justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          Recent Writing & Notes
+        </h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+          Thoughts, articles, and technical notes.
+        </p>
+      </div>
+      <a
+        href="/writing"
+        class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+      >
+        <span>All writing</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="divide-y divide-gray-100 dark:divide-gray-800/80 border-y border-gray-100 dark:border-gray-800/80">
+      {
+        writing.map((post) => (
+          <article class="py-4 group">
+            <a href={`/writing/${post.id}`} class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h3 class="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {post.data.title}
+              </h3>
+              <time
+                datetime={post.data.publishDate.toISOString()}
+                class="text-xs text-gray-400 dark:text-gray-500 font-mono shrink-0"
+              >
+                {post.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+              </time>
+            </a>
+            {post.data.description && (
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                {post.data.description}
+              </p>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

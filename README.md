@@ -1,7 +1,48 @@
-# Zhiqi Kang's personal site
+# Zhiqi Kang — Personal Website & Portfolio
 
-Hey there, you are curious enough about me to actually find this place. I am more of a cognitive scientist by training, focusing more on the psychology/neuroscience side. Have a look at the site https://zhiqikang.github.io/ for my work as well as my blog. Hope you would have fun here.
+A modern, fast, and minimal personal website built with [Astro 5](https://astro.build), [Tailwind CSS](https://tailwindcss.com), and [MDX](https://mdxjs.com/).
 
-## License
+## 🚀 Getting Started
 
-I have indeed zero clue about websites, so I used [academicpages](https://academicpages.github.io/), a Github Pages template for academic websites, which was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), and which is © 2016 Michael Rose and released under the MIT License. A big thank you to those heroes. 
+### Local Development
+
+```bash
+# Install dependencies (Node.js LTS)
+npm install
+
+# Start local development server
+npm run dev
+```
+
+Open `http://localhost:4321` in your browser.
+
+### Build & Preview
+
+```bash
+# Build static site for production (outputs to dist/)
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+## 📁 Project Structure
+
+```
+├── .github/workflows/deploy.yml   # GitHub Pages automated deployment
+├── src/
+│   ├── components/                # Reusable Astro UI components (ThemeToggle, ProjectCard, Header, Footer)
+│   ├── content/                   # MDX Content Collections
+│   │   ├── projects/              # Project case studies & showcase metadata
+│   │   └── writing/               # Articles, notes, and essays
+│   ├── layouts/                   # BaseLayout, ProjectLayout, PostLayout
+│   ├── pages/                     # File-based routes (index, projects, writing, cv, 404)
+│   └── styles/                    # Global Tailwind CSS and theme tokens
+├── public/                        # Static assets (favicons, images)
+├── astro.config.mjs               # Astro configuration
+└── tailwind.config.mjs            # Tailwind CSS configuration
+```
+
+## 🚢 Deployment
+
+The site is automatically built and deployed to GitHub Pages (`https://zhiqikang.github.io`) on every push to `master` via GitHub Actions (`.github/workflows/deploy.yml`).

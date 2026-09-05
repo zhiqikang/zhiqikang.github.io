@@ -1,0 +1,55 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/zhiqikang',
+    icon: 'simple-icons:github',
+  },
+  {
+    name: 'X / Twitter',
+    url: 'https://twitter.com/zhiqi_kang',
+    icon: 'simple-icons:x',
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/zhiqi-kang-136197362/',
+    icon: 'simple-icons:linkedin',
+  },
+];
+---
+
+<footer class="mt-auto border-t border-gray-200 dark:border-gray-800 transition-colors">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
+    <div class="flex items-center gap-1">
+      <span>&copy; {currentYear} Zhiqi Kang. Built with</span>
+      <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 font-medium transition-colors">
+        Astro
+      </a>
+      <span>&</span>
+      <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 font-medium transition-colors">
+        Tailwind
+      </a>
+    </div>
+
+    <!-- Socials -->
+    <div class="flex items-center gap-4">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors p-1"
+            aria-label={link.name}
+          >
+            <Icon name={link.icon} class="w-4 h-4" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>

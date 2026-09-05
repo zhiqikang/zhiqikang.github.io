@@ -1,2 +1,19 @@
+# Build output
+dist/
 _site/
 
+# Dependencies
+node_modules/
+
+# Astro
+.astro/
+
+# Environment
+.env
+.env.production
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

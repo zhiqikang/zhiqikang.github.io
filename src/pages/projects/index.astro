@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+// Extract all unique tags
+const allTags = Array.from(new Set(projects.flatMap((p) => p.data.tags)));
+---
+
+<BaseLayout
+  title="Projects"
+  description="Showcase of software tools, web applications, open source libraries, and interactive experiments."
+>
+  <div class="max-w-4xl mx-auto">
+    <!-- Page Header -->
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
+        Projects & Tools
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+        A collection of web tools, applications, and experiments. Built with web standards, zero unnecessary bloat, and a focus on utility.
+      </p>
+
+      {
+        allTags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-6">
+            {allTags.map((tag) => (
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-slate-800/80 text-gray-600 dark:text-gray-300 font-mono">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.tags}
+            demoUrl={project.data.demoUrl}
+            githubUrl={project.data.githubUrl}
+            slug={project.id}
+            featured={project.data.featured}
+            badge={project.data.badge}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+title: "Paperday — Printable Calendar Maker"
+description: "A dependency-free printable calendar maker running entirely in the browser. Produces customizable monthly and yearly layouts with holiday markers, custom notes, and high-precision print styles for A4 and US Letter."
+publishDate: 2026-08-01
+featured: true
+order: 1
+badge: "Featured Tool"
+tags: ["Vanilla JS", "Print CSS", "Web Tool", "Zero Dependencies"]
+demoUrl: "https://zhiqikang.github.io/calendar/"
+githubUrl: "https://github.com/zhiqikang/calendar"
+---
+
+## Overview
+
+**Paperday** is a lightweight, browser-native calendar maker designed to produce clean, high-precision printable calendars without requiring any heavy PDF engines, third-party backend servers, or framework runtimes.
+
+Everything runs purely on standard web platform APIs—HTML, Vanilla JavaScript (ES modules), and dedicated print stylesheets.
+
+<div class="not-prose my-6 p-5 rounded-xl border border-blue-200 dark:border-blue-900/50 bg-blue-50/50 dark:bg-blue-950/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+  <div>
+    <div class="font-bold text-gray-900 dark:text-gray-100">Try Paperday Live</div>
+    <div class="text-sm text-gray-600 dark:text-gray-400">Generate, customize, and print your own custom calendars directly in your browser.</div>
+  </div>
+  <a
+    href="https://zhiqikang.github.io/calendar/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-colors shadow-sm whitespace-nowrap"
+  >
+    <span>Launch Paperday</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+    </svg>
+  </a>
+</div>
+
+---
+
+## Key Features
+
+- **Multiple Layout Modes:** Monthly overview, compact multi-month grids, and full 12-month single-sheet yearly posters.
+- **Print-First Precision:** CSS `@media print` rules calibrated specifically for standard A4 and US Letter dimensions with crisp lines and zero page overflow.
+- **Holidays & Custom Notes:** Timezone-safe holiday markings and optional ruled note-taking areas.
+- **Zero Build / Zero Dependencies:** Pure ES modules and web standards that load instantly and work offline.
+
+---
+
+## Architecture & Modular Components
+
+The rendering layer is designed around reusable DOM component functions:
+
+```js
+import { MonthlyCalendarPage } from "./components/calendar-components.js";
+
+const page = MonthlyCalendarPage({
+  month: { year: 2027, month: 0 },
+  settings: { weekStart: "monday", includeNotes: true },
+  holidays: [{ date: "2027-01-01", name: "New Year’s Day" }],
+  brand: "MY CALENDAR",
+});
+
+document.querySelector("#output").append(page);
+```
+
+Every component function generates a native DOM node with accessible attributes, allowing components to be easily composed, tested independently, and embedded anywhere.
