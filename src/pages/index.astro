@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -26,7 +27,7 @@ const writing = (await getCollection('writing', ({ data }) => !data.draft))
         </h1>
 
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
-          I build clean web applications, developer tools, and lightweight software. Interested in minimal systems, interactive UI, data pipelines, and high-craft digital tools.
+          Once a brainy student, now a software engineer with a passion for building interactive tools and web applications. I enjoy exploring new technologies, solving complex problems, and creating meaningful experiences through code and mind. 
         </p>
       </div>
 
@@ -49,9 +50,7 @@ const writing = (await getCollection('writing', ({ data }) => !data.draft))
         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white dark:bg-white dark:text-gray-900 font-medium text-sm hover:opacity-90 transition-opacity shadow-sm"
       >
         <span>Explore Projects</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-        </svg>
+        <Icon name="chevron-down" class="w-4 h-4" />
       </a>
       <a
         href="/cv"
@@ -66,6 +65,7 @@ const writing = (await getCollection('writing', ({ data }) => !data.draft))
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 font-medium text-sm hover:bg-gray-100 dark:hover:bg-slate-800/80 transition-colors"
       >
+        <Icon name="simple-icons:github" class="w-4 h-4" />
         <span>GitHub</span>
       </a>
     </div>

@@ -1,65 +1,281 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 
-const skills = [
-  { category: 'Languages', items: ['TypeScript', 'JavaScript (ES6+)', 'Python', 'HTML5 / CSS3', 'SQL'] },
-  { category: 'Web & Frameworks', items: ['Astro', 'Node.js', 'Tailwind CSS', 'Vite', 'React'] },
-  { category: 'Engineering & Tools', items: ['Git', 'Print CSS / Layout Engine', 'Data Pipelines', 'Automation'] },
-  { category: 'Background', items: ['Cognitive Neuroscience', 'Experimental Design', 'Data Analysis'] },
+const workExperience = [
+  {
+    role: 'Python AI Engineer Trainee',
+    company: 'eltemate',
+    location: 'Munich, Bavaria, Germany (Remote / Hybrid)',
+    period: '2026 – Present',
+    current: true,
+    highlights: [
+      'Developing and engineering Python-based AI workflows and intelligent automation solutions.',
+      'Implementing machine learning pipelines, LLM-based tools, and software engineering best practices.',
+    ],
+  },
+  {
+    role: 'Battery Testing Specialist',
+    company: 'EVE Germany GmbH',
+    location: 'Straubing, Bavaria, Germany',
+    period: '02.2026 – Present',
+    current: false,
+    highlights: [
+      'Performed hardware QA and performance diagnostics for battery assembly.',
+    ],
+  },
+  {
+    role: 'Research Assistant',
+    company: 'Distributed Cognition Lab (DisCo), Humboldt-Universität zu Berlin',
+    location: 'Berlin, Germany',
+    period: '05.2021 – 2023',
+    current: false,
+    highlights: [
+      'Developed and distributed online crowdsourced behavioral experiments written in JavaScript / jsPsych.',
+      'Conducted behavioral data collection, data analysis, and visualization using MATLAB and R.',
+      'Assisted with fMRI data collection and fMRI time-series data analysis.',
+      'Managed codebase in Git and implemented version control standards in the lab environment.',
+    ],
+  },
+  {
+    role: 'Research Assistant',
+    company: 'Center for Adaptive Rationality, Max Planck Institute for Human Development',
+    location: 'Berlin, Germany',
+    period: '05.2018 – 06.2020',
+    current: false,
+    highlights: [
+      'Developed novel behavioral paradigms to probe human decision-making biases.',
+      'Collected behavioral data and analyzed empirical datasets using MATLAB.',
+    ],
+  },
+  {
+    role: 'Research Assistant',
+    company: 'Asian Cohesion Radar, Boehnke Lab, Jacobs University Bremen',
+    location: 'Bremen, Germany',
+    period: '09.2015 – 08.2016',
+    current: false,
+    highlights: [
+      'Produced codebooks and country reports in an international cross-country collaboration project.',
+      'Co-authored research published in "What Holds Asian Societies Together? Insights from the Social Cohesion Radar" (Bertelsmann Stiftung).',
+    ],
+  },
+  {
+    role: 'Teaching Assistant',
+    company: 'Psychology & Methodology, Jacobs University Bremen',
+    location: 'Bremen, Germany',
+    period: '09.2014 – 12.2015',
+    current: false,
+    highlights: [
+      'Assisted teaching, led group discussions, and provided academic guidance and tutoring for students.',
+    ],
+  },
+  {
+    role: 'Research Assistant',
+    company: 'Cross-cultural Psychology, Institute of Psychology, Chinese Academy of Sciences',
+    location: 'Beijing, China',
+    period: '06.2014 – 08.2014',
+    current: false,
+    highlights: [
+      'Collected behavioral data across cross-country pre-school children and performed comparative data analysis.',
+    ],
+  },
 ];
 
 const education = [
   {
-    degree: 'M.Sc. Mind and Brain',
+    degree: 'M.Sc. Berlin School of Mind and Brain',
     institution: 'Humboldt-Universität zu Berlin',
     location: 'Berlin, Germany',
-    period: '2017 – 2020',
-    description: 'Interdisciplinary program spanning cognitive science, computational neuroscience, and philosophy of mind.',
+    period: '2017 – 2026',
+    status: 'Expected Graduation: June 2026 · Cumulative GPA 1.5',
+    description:
+      'Interdisciplinary research program spanning cognitive neuroscience, computational psychology, visual working memory, and empirical methodologies.',
   },
   {
     degree: 'B.Sc. Cognitive Psychology and Neuroscience',
-    institution: 'Jacobs University',
+    institution: 'Jacobs University Bremen',
     location: 'Bremen, Germany',
     period: '2013 – 2016',
-    description: 'Foundations in neuroscience, statistical analysis, and empirical research methodology.',
+    status: 'GPA 1.39',
+    description:
+      'Foundations in neuroscience, statistical analysis, psychophysics, and empirical research experimental design.',
+  },
+];
+
+const publications = [
+  {
+    year: '2021',
+    title: 'Concurrent visual working memory bias in sequential integration of approximate number',
+    authors: 'Zhiqi Kang & Bernhard Spitzer',
+    journal: 'Scientific Reports (Nature Portfolio)',
+    details: '11, 5293 (2021)',
+    url: 'https://doi.org/10.1038/s41598-021-84232-7',
+    description:
+      'Investigated bidirectional crosstalk between visual working memory and sequential perceptual decision-making, demonstrating systematic memory-driven bias in numerical integration.',
+  },
+];
+
+const skillGroups = [
+  {
+    category: 'Programming Languages',
+    items: [
+      'Python: Advanced',
+      'MATLAB: Excellent',
+      'R: Advanced',
+      'JavaScript / TypeScript',
+      'HTML5 / CSS3',
+      'SQL',
+    ],
+  },
+  {
+    category: 'AI & Data Science',
+    items: [
+      'AI Engineering',
+      'Data Analysis & Visualization',
+      'fMRI Time-Series Analysis',
+      'Psychophysics & Experimental Design',
+      'jsPsych Experiments',
+      'Statistical Modeling',
+    ],
+  },
+  {
+    category: 'Engineering & Tools',
+    items: [
+      'Git & Version Control',
+      'Data Pipelines',
+      'Process Automation',
+      'Hardware QA & Diagnostics',
+      'Linux / Shell Scripting',
+      'Astro / Modern Web',
+    ],
+  },
+  {
+    category: 'Natural Languages',
+    items: [
+      'English (C2, Native proficiency)',
+      'German (B2, Working proficiency)',
+      'Chinese (Native / Mother tongue)',
+    ],
   },
 ];
 ---
 
 <BaseLayout
-  title="About & Experience"
-  description="About Zhiqi Kang — background, experience, technical stack, and education."
+  title="Curriculum Vitae"
+  description="Zhiqi Kang — Curriculum Vitae: Python AI Engineer Trainee, cognitive neuroscience background, research experience, technical skills, and publications."
 >
   <div class="max-w-3xl mx-auto space-y-12">
     <!-- Header -->
     <header class="pb-8 border-b border-gray-200 dark:border-gray-800">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Python AI Engineer Trainee @ eltemate</span>
+        </div>
+
+        <button
+          type="button"
+          onclick="window.print()"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-gray-200 dark:border-gray-800 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-700 transition-colors shadow-xs print:hidden cursor-pointer"
+          title="Print or save as PDF"
+        >
+          <span>Print / PDF</span>
+          <span>↗</span>
+        </button>
+      </div>
+
       <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-4">
-        About & Experience
+        Zhiqi Kang
       </h1>
-      <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-        I’m Zhiqi Kang, a developer and problem solver based in Berlin. With a background in cognitive neuroscience and research, I now channel that analytical mindset into crafting high-quality software, web tools, and minimal interfaces.
+
+      <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+        Solution-driven professional with a background in cognitive psychology and neuroscience, complemented by solid programming skills in Python, R, MATLAB, and JavaScript with 10 years of programming experience. Proficient in data analysis, visualization, and research methodologies, with extensive experience collaborating on academic publications. Currently working as a Python AI Engineer Trainee at eltemate, applying deep analytical rigor and modern software engineering to build intelligent tools and data-driven systems.
       </p>
+
+      <!-- Key metadata / links (No sensitive phone numbers or physical addresses) -->
+      <div class="flex flex-wrap items-center gap-3 pt-1">
+        <a
+          href="https://www.linkedin.com/in/zhiqi-kang-136197362/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 text-xs font-medium hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-2xs"
+        >
+          <Icon name="simple-icons:linkedin" class="w-3.5 h-3.5" />
+          <span>LinkedIn</span>
+          <Icon name="external-link" class="w-3 h-3 opacity-60" />
+        </a>
+
+        <a
+          href="https://github.com/zhiqikang"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 text-xs font-medium hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-2xs"
+        >
+          <Icon name="simple-icons:github" class="w-3.5 h-3.5" />
+          <span>GitHub</span>
+          <Icon name="external-link" class="w-3 h-3 opacity-60" />
+        </a>
+
+        <span class="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 sm:ml-auto font-mono">
+          <span>📍 Berlin, Germany</span>
+        </span>
+      </div>
     </header>
 
-    <!-- Technical Skills Section -->
+    <!-- Work Experience Section -->
     <section>
-      <h2 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-6">
-        Technical Skills & Tools
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <h2 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          Work Experience
+        </h2>
+        <span class="text-xs font-mono text-gray-400 dark:text-gray-500">2014 – Present</span>
+      </div>
+
+      <div class="space-y-8">
         {
-          skills.map((skillGroup) => (
-            <div class="p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 bg-white dark:bg-slate-900/40">
-              <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3">
-                {skillGroup.category}
-              </h3>
-              <div class="flex flex-wrap gap-1.5">
-                {skillGroup.items.map((item) => (
-                  <span class="text-xs px-2.5 py-1 rounded-md bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-mono">
-                    {item}
-                  </span>
-                ))}
+          workExperience.map((job) => (
+            <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-800 group">
+              <div
+                class={`absolute -left-[5px] top-1.5 w-2 h-2 rounded-full transition-colors ${
+                  job.current
+                    ? 'bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-950/70'
+                    : 'bg-blue-500'
+                }`}
+              />
+
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+                <div class="flex flex-wrap items-center gap-2">
+                  <h3 class="text-base font-bold text-gray-900 dark:text-gray-100">
+                    {job.role}
+                  </h3>
+                  {job.current && (
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 uppercase tracking-wide">
+                      Current Role
+                    </span>
+                  )}
+                </div>
+                <span class="text-xs font-mono text-gray-500 dark:text-gray-400 shrink-0">
+                  {job.period}
+                </span>
               </div>
+
+              <div class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <span class="text-blue-600 dark:text-blue-400">{job.company}</span>
+                {job.location && (
+                  <span class="text-gray-500 dark:text-gray-400 font-normal"> — {job.location}</span>
+                )}
+              </div>
+
+              {job.highlights && (
+                <ul class="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+                  {job.highlights.map((point) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-blue-500 dark:text-blue-400 mt-1 shrink-0 text-xs leading-none">▸</span>
+                      <span class="leading-relaxed">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))
         }
@@ -69,9 +285,9 @@ const education = [
     <!-- Education Section -->
     <section>
       <h2 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-6">
-        Education
+        Higher Education
       </h2>
-      <div class="space-y-6">
+      <div class="space-y-8">
         {
           education.map((edu) => (
             <div class="relative pl-6 border-l-2 border-gray-200 dark:border-gray-800">
@@ -80,16 +296,93 @@ const education = [
                 <h3 class="text-base font-bold text-gray-900 dark:text-gray-100">
                   {edu.degree}
                 </h3>
-                <span class="text-xs font-mono text-gray-500 dark:text-gray-400">
+                <span class="text-xs font-mono text-gray-500 dark:text-gray-400 shrink-0">
                   {edu.period}
                 </span>
               </div>
-              <div class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                {edu.institution} — <span class="text-gray-500 dark:text-gray-400">{edu.location}</span>
+              <div class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                {edu.institution} — <span class="text-gray-500 dark:text-gray-400 font-normal">{edu.location}</span>
               </div>
+              {edu.status && (
+                <div class="text-xs font-mono text-blue-600 dark:text-blue-400 mb-2">
+                  {edu.status}
+                </div>
+              )}
               <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 {edu.description}
               </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section>
+      <h2 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-6">
+        Publications & Research Output
+      </h2>
+      <div class="space-y-4">
+        {
+          publications.map((pub) => (
+            <div class="p-4 sm:p-5 rounded-xl border border-gray-200/80 dark:border-gray-800 bg-white dark:bg-slate-900/40 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300">
+                  {pub.year}
+                </span>
+                <span class="text-xs font-mono text-gray-500 dark:text-gray-400">
+                  {pub.journal} {pub.details && `· ${pub.details}`}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                {pub.url ? (
+                  <a
+                    href={pub.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    <span>{pub.title}</span>
+                    <Icon name="external-link" class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                  </a>
+                ) : (
+                  pub.title
+                )}
+              </h3>
+
+              <div class="text-xs text-gray-600 dark:text-gray-400 font-medium mb-2">
+                {pub.authors}
+              </div>
+
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                {pub.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section>
+      <h2 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-6">
+        Skills & Proficiencies
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          skillGroups.map((group) => (
+            <div class="p-4 rounded-xl border border-gray-200/80 dark:border-gray-800 bg-white dark:bg-slate-900/40">
+              <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3">
+                {group.category}
+              </h3>
+              <div class="flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span class="text-xs px-2.5 py-1 rounded-md bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-mono">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))
         }
@@ -102,26 +395,28 @@ const education = [
         Let’s Connect
       </h2>
       <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-        Feel free to reach out to collaborate on projects, discuss ideas, or say hello.
+        Feel free to reach out for AI engineering collaborations, research discussions, or inquiries.
       </p>
       <div class="flex flex-wrap gap-3 text-sm">
+        <a
+          href="https://www.linkedin.com/in/zhiqi-kang-136197362/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 font-medium hover:border-blue-500 transition-colors"
+        >
+          <Icon name="simple-icons:linkedin" class="w-4 h-4" />
+          <span>LinkedIn</span>
+          <Icon name="external-link" class="w-3.5 h-3.5 text-gray-400" />
+        </a>
         <a
           href="https://github.com/zhiqikang"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 font-medium hover:border-blue-500 transition-colors"
         >
+          <Icon name="simple-icons:github" class="w-4 h-4" />
           <span>GitHub</span>
-          <span>↗</span>
-        </a>
-        <a
-          href="https://twitter.com/zhiqikang"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 font-medium hover:border-blue-500 transition-colors"
-        >
-          <span>X / Twitter</span>
-          <span>↗</span>
+          <Icon name="external-link" class="w-3.5 h-3.5 text-gray-400" />
         </a>
       </div>
     </section>
