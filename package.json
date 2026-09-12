@@ -11,7 +11,7 @@
     "update:icons": "npm i astro-icon@latest @iconify-json/simple-icons@latest"
   },
   "dependencies": {
-    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/mdx": "^8.0.1",
     "@astrojs/sitemap": "^3.7.4",
     "@iconify-json/simple-icons": "^1.2.94",
     "@tailwindcss/typography": "^0.5.20",
